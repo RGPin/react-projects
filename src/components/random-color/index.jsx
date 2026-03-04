@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function RandomColor() {
   const [colorType, setColorType] = useState("hex");
@@ -23,6 +23,10 @@ function RandomColor() {
       console.log(colorType);
     }
   };
+
+  useEffect(() => {
+    handleCreateRandomColor();
+  }, [colorType]);
 
   return (
     <div
