@@ -1,13 +1,15 @@
-import Accordian from "./components/accordion"
-import RandomColor from "./components/random-color"
+import Accordian from "./components/accordion";
+import RandomColor from "./components/random-color";
+import StarRating from "./components/star-rating";
 
 function App() {
   return (
     <>
-    {/* <Accordian /> */}
-    <RandomColor />
+      {/* <Accordian /> */}
+      {/* <RandomColor /> */}
+      <StarRating />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
