@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 
-export default function ImageSlider({ url, limit }) {
+export default function ImageSlider({ url, limit = 5, page = 1 }) {
   const [images, setImages] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -10,7 +11,9 @@ export default function ImageSlider({ url, limit }) {
     try {
       setLoading(true);
 
-      const response = await fetch(url);
+      const response = await fetch(
+        `https://picsum.photos/v2/list?page=${page}&limit=${limit}`,
+      );
       const data = await response.json();
 
       if (data) {
@@ -28,6 +31,8 @@ export default function ImageSlider({ url, limit }) {
     else setErrorMsg("no url");
   }, [url]);
 
+  console.log(images);
+
   if (loading) {
     return <div>Loading data! Please wait</div>;
   }
@@ -36,5 +41,27 @@ export default function ImageSlider({ url, limit }) {
     return <div>Error occured! Error: {errorMsg}</div>;
   }
 
-  return <div className="container"></div>;
+  return (
+    <div className="container">
+      <BsArrowLeftCircleFill className="arrow arrow-left" />
+      {images && images.length
+        ? images.map((item) => (
+            <img
+              key={item.id}
+              alt={item.download_url}
+              src={item.download_url}
+              className="current-image"
+            />
+          ))
+        : null}
+      <BsArrowRightCircleFill className="arrow arrow-right" />
+      <span className="circle-indicators">
+        {images && images.length
+          ? images.map((_, index) => (
+              <button key={index} className="current-indicator"></button>
+            ))
+          : null}
+      </span>
+    </div>
+  );
 }

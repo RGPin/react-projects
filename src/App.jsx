@@ -9,7 +9,11 @@ function App() {
       {/* <Accordian /> */}
       {/* <RandomColor /> */}
       {/* <StarRating noOfStars={10} /> */}
-      <ImageSlider url={""} limit={""} />
+      <ImageSlider
+        url={"https://picsum.photos/v2/list"}
+        limit={"10"}
+        page={"1"}
+      />
     </>
   );
 }
