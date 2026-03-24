@@ -4,6 +4,10 @@ import QRCode from "react-qr-code";
 export default function QRCodeGenerator() {
   const [qrCode, setQrCode] = useState("");
   const [input, setInput] = useState("");
+  function handleGenerateQR() {
+    setQrCode(input);
+    setInput("");
+  }
   return (
     <div>
       <h1>QR Code Generator</h1>
@@ -13,10 +17,11 @@ export default function QRCodeGenerator() {
           name="qr-code"
           placeholder="Enter value"
           onChange={(e) => setInput(e.target.value)}
+          value={input}
         />
         <button
           disabled={!input || input.trim() === ""}
-          onClick={() => setQrCode(input)}
+          onClick={handleGenerateQR}
         >
           Generate
         </button>
