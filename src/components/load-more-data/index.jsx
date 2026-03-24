@@ -6,6 +6,7 @@ export default function LoadMoreData() {
   const [products, setProducts] = useState([]);
   const [count, setCount] = useState(0);
   const [disableButton, setDisableButton] = useState(false);
+  const [error, setError] = useState(null);
 
   async function fetchProducts(signal) {
     try {
@@ -20,7 +21,9 @@ export default function LoadMoreData() {
         setLoading(false);
       }
     } catch (e) {
-      if (e.name !== "AbortError") console.log(e.message);
+      if (e.name !== "AbortError") {
+        setError(`Error encountered: ${e.message}`);
+      }
     } finally {
       setLoading(false);
     }
@@ -39,6 +42,10 @@ export default function LoadMoreData() {
 
   if (loading) {
     return <div>Loading data! Please wait.</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
   }
 
   return (
