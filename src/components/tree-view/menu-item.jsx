@@ -3,13 +3,7 @@ import MenuList from "./menu-list";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
 export default function MenuItem({ item }) {
-  const [displayChildren, setDisplayChildren] = useState({});
-  function handleToggleChildren(label) {
-    setDisplayChildren({
-      ...displayChildren,
-      [label]: !displayChildren[label],
-    });
-  }
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <li>
       <div
@@ -22,8 +16,8 @@ export default function MenuItem({ item }) {
       >
         <p>{item.label}</p>
         {item && item.children && item.children.length ? (
-          <span onClick={() => handleToggleChildren(item.label)}>
-            {displayChildren[item.label] ? (
+          <span onClick={() => setIsOpen((prev) => !prev)}>
+            {isOpen ? (
               <FaMinus color="white" size={25} />
             ) : (
               <FaPlus color="white" size={25} />
@@ -31,10 +25,7 @@ export default function MenuItem({ item }) {
           </span>
         ) : null}
       </div>
-      {item &&
-      item.children &&
-      item.children.length > 0 &&
-      displayChildren[item.label] ? (
+      {item && item.children && item.children.length > 0 && isOpen ? (
         <MenuList list={item.children} />
       ) : null}
     </li>
