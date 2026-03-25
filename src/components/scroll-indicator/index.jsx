@@ -12,8 +12,7 @@ export default function ScrollIndicator({ url }) {
       const response = await fetch(url);
       const data = await response.json();
 
-      console.log(data);
-      // setData(data);
+      if (data && data.products && data.products.length) setData(data.products);
     } catch (error) {
       console.error(error);
       setError(error);
@@ -30,5 +29,14 @@ export default function ScrollIndicator({ url }) {
 
   if (error) return <div>Error! {error}</div>;
 
-  return <div>Test</div>;
+  return (
+    <div>
+      <h1>Custom Scroll Indicator</h1>
+      <div className="data-container">
+        {data && data.length > 0
+          ? data.map((item, index) => <p key={index}>{item.title}</p>)
+          : null}
+      </div>
+    </div>
+  );
 }
