@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./styles.css";
 
 export default function ScrollIndicator({ url }) {
   const [data, setData] = useState([]);
@@ -47,7 +48,15 @@ export default function ScrollIndicator({ url }) {
 
   return (
     <div>
-      <h1>Custom Scroll Indicator</h1>
+      <div className="top-container">
+        <h1>Custom Scroll Indicator</h1>
+        <div className="scroll-progress-container">
+          <div
+            className="progress-bar"
+            style={{ width: `${scrollProgress}%` }}
+          ></div>
+        </div>
+      </div>
       <div className="data-container">
         {data && data.length > 0
           ? data.map((item, index) => <p key={index}>{item.title}</p>)

@@ -8,7 +8,7 @@ import ScrollIndicator from "./components/scroll-indicator";
 import StarRating from "./components/star-rating";
 import TreeView from "./components/tree-view";
 import menus from "./components/tree-view/data";
-import "./App.css";
+// import "./App.css";
 
 function App() {
   return (
