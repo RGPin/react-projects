@@ -1,0 +1,42 @@
+:root {
+  --background: white;
+  --text-primary: black;
+  --button-bg: black;
+  --button-text: white;
+}
+
+[data-theme="dark"] {
+  --background: black;
+  --text-primary: white;
+  --button-bg: white;
+  --button-text: black;
+}
+
+.light-dark-mode {
+  background-color: var(--background);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  transition: all 0.5s;
+  color: var(--text-primary);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+button {
+  background-color: var(--button-bg);
+  border: 1px solid var(--button-text);
+  color: var(--button-text);
+  margin: 15px 0px;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
