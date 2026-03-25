@@ -22,7 +22,7 @@ function App() {
       {/* <LoadMoreData /> */}
       {/* <TreeView menus={menus} /> */}
       {/* <QRCodeGenerator /> */}
-      <LightDarkMode />
+      {/* <LightDarkMode /> */}
     </>
   );
 }
