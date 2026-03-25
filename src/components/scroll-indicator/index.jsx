@@ -13,7 +13,7 @@ export default function ScrollIndicator({ url }) {
       const data = await response.json();
 
       console.log(data);
-      setData(data);
+      // setData(data);
     } catch (error) {
       console.error(error);
       setError(error);
@@ -22,10 +22,13 @@ export default function ScrollIndicator({ url }) {
     }
   }
 
+  useEffect(() => {
+    fetchData(url);
+  }, [url]);
+
   if (loading) return <div>Loading please wait</div>;
 
   if (error) return <div>Error! {error}</div>;
 
-  useEffect(() => fetchData(url), []);
-  return <div></div>;
+  return <div>Test</div>;
 }
