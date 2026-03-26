@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Modal from "./modal";
+import "./styles.css";
 
 export default function ModalTest() {
   const [showModal, setShowModal] = useState(false);
@@ -11,7 +12,7 @@ export default function ModalTest() {
   return (
     <div>
       <button onClick={handleToggleModal}>Open Modal Popup</button>
-      {showModal && <Modal />}
+      {showModal && <Modal body={<div>Customized body</div>} />}
     </div>
   );
 }
