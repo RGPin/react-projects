@@ -12,12 +12,16 @@ export default function Tabs({ tabs, onChange }) {
     <div className="wrapper">
       <div className="heading">
         {tabs.map((item, index) => (
-          <div onClick={() => handleOnClick(index)} key={item.label}>
+          <div
+            className={`tab-item ${currentTabIndex === index && "active"}`}
+            onClick={() => handleOnClick(index)}
+            key={item.label}
+          >
             <span className="label">{item.label}</span>
           </div>
         ))}
       </div>
-      <div className="content">
+      <div className="content" style={{ color: "red" }}>
         {tabs[currentTabIndex] && tabs[currentTabIndex].content}
       </div>
     </div>
