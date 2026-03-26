@@ -1,4 +1,5 @@
 import Accordian from "./components/accordion";
+import TabTest from "./components/custom-tabs/tab-test";
 import ImageSlider from "./components/image-slider";
 import LightDarkMode from "./components/light-dark-mode";
 import LoadMoreData from "./components/load-more-data";
@@ -26,6 +27,7 @@ function App() {
       {/* <QRCodeGenerator /> */}
       {/* <LightDarkMode /> */}
       {/* <ScrollIndicator url={"https://dummyjson.com/products?limit=100"} /> */}
+      <TabTest />
     </>
   );
 }

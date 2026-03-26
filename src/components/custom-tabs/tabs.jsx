@@ -2,11 +2,17 @@ import { useState } from "react";
 
 export default function Tabs({ tabs, onChange }) {
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
+
+  function handleOnClick(index) {
+    setCurrentTabIndex(index);
+    onChange(index);
+  }
+
   return (
     <div className="wrapper">
       <div className="heading">
-        {tabs.map((item) => (
-          <div key={item.label}>
+        {tabs.map((item, index) => (
+          <div onClick={() => handleOnClick(index)} key={item.label}>
             <span className="label">{item.label}</span>
           </div>
         ))}

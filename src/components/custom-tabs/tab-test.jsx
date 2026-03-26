@@ -20,5 +20,9 @@ export default function TabTest() {
     },
   ];
 
-  return <Tabs tabs={tabs} />;
+  function handleChange(currentTabIndex) {
+    console.log(currentTabIndex);
+  }
+
+  return <Tabs tabs={tabs} onChange={handleChange} />;
 }
