@@ -7,7 +7,10 @@ export default function User({ user }) {
     html_url,
     name,
     login,
+    created_at,
   } = user;
+
+  const createdDate = new Date(created_at);
 
   return (
     <div className="user">
@@ -18,6 +21,26 @@ export default function User({ user }) {
         <a href={html_url} target="_blank">
           {name || login}
         </a>
+        <p>
+          User joined on{" "}
+          {`${createdDate.getDate()} ${createdDate.toLocaleString("en-us", {
+            month: "short",
+          })} ${createdDate.getFullYear()}`}
+        </p>
+      </div>
+      <div>
+        <div>
+          <p>Public Repos</p>
+          <p>{public_repos}</p>
+        </div>
+        <div>
+          <p>Followers</p>
+          <p>{followers}</p>
+        </div>
+        <div>
+          <p>Following</p>
+          <p>{following}</p>
+        </div>
       </div>
     </div>
   );
