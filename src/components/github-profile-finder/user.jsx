@@ -17,7 +17,7 @@ export default function User({ user }) {
       <div>
         <img src={avatar_url} className="avatar" alt="user-avatar" />
       </div>
-      <div>
+      <div className="name-container">
         <a href={html_url} target="_blank">
           {name || login}
         </a>
@@ -28,7 +28,7 @@ export default function User({ user }) {
           })} ${createdDate.getFullYear()}`}
         </p>
       </div>
-      <div>
+      <div className="profile-info">
         <div>
           <p>Public Repos</p>
           <p>{public_repos}</p>
