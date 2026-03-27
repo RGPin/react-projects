@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import User from "./user";
 
 export default function GithubProfileFinder() {
-  const [userName, setUserName] = useState("sangammukherjee");
+  const [userName, setUserName] = useState("guy");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [userData, setUserData] = useState(null);
@@ -11,6 +11,7 @@ export default function GithubProfileFinder() {
     setLoading(true);
     try {
       const response = await fetch(`https://api.github.com/users/${userName}`);
+      if (!response.ok) setUserData(null);
       const data = await response.json();
       if (data) {
         setUserData(data);
@@ -24,7 +25,9 @@ export default function GithubProfileFinder() {
     }
   }
 
-  function handleSubmit() {}
+  function handleSubmit() {
+    fetchGithubUserData();
+  }
 
   useEffect(() => {
     fetchGithubUserData();
@@ -46,7 +49,13 @@ export default function GithubProfileFinder() {
         />
         <button onClick={handleSubmit}>Search</button>
       </div>
-      <div>{userData && <User user={userData} />}</div>
+      <div>
+        {userData && userData["html_url"] ? (
+          <User user={userData} />
+        ) : (
+          "User not found"
+        )}
+      </div>
     </div>
   );
 }
