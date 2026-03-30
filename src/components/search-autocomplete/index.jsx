@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Suggestions from "./suggestions";
 
 export default function SearchAutoComplete() {
   const [loading, setLoading] = useState(false);
@@ -46,8 +47,6 @@ export default function SearchAutoComplete() {
     fetchData();
   }, []);
 
-  console.log(filteredUsers);
-
   if (loading) return <h1>Loading. Please wait...</h1>;
 
   if (error) return <div>Error: {error}</div>;
@@ -61,6 +60,7 @@ export default function SearchAutoComplete() {
         type="text"
         onChange={handleChange}
       />
+      {showDropdown && <Suggestions data={filteredUsers} />}
     </div>
   );
 }
