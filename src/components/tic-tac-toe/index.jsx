@@ -43,6 +43,11 @@ export default function TicTacToe() {
     setSquares(copySquares);
   }
 
+  function handleRestart() {
+    setIsXTurn(true);
+    setSquares(Array(9).fill(""));
+  }
+
   useEffect(() => {
     if (!checkWinner(squares) && squares.every((item) => item !== "")) {
       setStatus("Draw!");
@@ -71,6 +76,7 @@ export default function TicTacToe() {
         <Square value={squares[8]} onClick={() => handleClick(8)} />
       </div>
       <h1>{status}</h1>
+      <button onClick={handleRestart}>Restart</button>
     </div>
   );
 }
