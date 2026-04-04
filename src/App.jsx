@@ -39,9 +39,9 @@ function App() {
       {/* <SearchAutoComplete /> */}
       {/* <TicTacToe /> */}
 
-      <FeatureFlagGlobalState>
+      {/* <FeatureFlagGlobalState>
         <FeatureFlags />
-      </FeatureFlagGlobalState>
+      </FeatureFlagGlobalState> */}
     </>
   );
 }
