@@ -6,6 +6,21 @@ export default function ScrollToTopAndBottom() {
     {},
   );
 
+  function handleScrollToTop() {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }
+
+  function handleScrollToBottom() {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    });
+  }
+
   if (pending) return <h1>Loading, please wait...</h1>;
   if (error) return <h3>Error: {error}</h3>;
 
@@ -13,7 +28,7 @@ export default function ScrollToTopAndBottom() {
     <div>
       <h1>Scroll To Top and Bottom Feature</h1>
       <h3>This is the top section</h3>
-      <button>Scroll To Bottom</button>
+      <button onClick={handleScrollToBottom}>Scroll To Bottom</button>
       <ul>
         {data &&
           data.products.length &&
@@ -22,7 +37,7 @@ export default function ScrollToTopAndBottom() {
           ))}
       </ul>
       <h3>This is the bottom section</h3>
-      <button>Scroll To Top</button>
+      <button onClick={handleScrollToTop}>Scroll To Top</button>
     </div>
   );
 }
