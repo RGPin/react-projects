@@ -17,6 +17,7 @@ import TreeView from "./components/tree-view";
 import menus from "./components/tree-view/data";
 import UseFetchHookText from "./components/use-fetch/test";
 import UseOnClickOutsideTest from "./components/use-outside-click/test";
+import UseWindowResizeTest from "./components/use-window-resize/test";
 // import "./App.css";
 
 function App() {
@@ -46,7 +47,8 @@ function App() {
       </FeatureFlagGlobalState> */}
 
       {/* <UseFetchHookText /> */}
-      <UseOnClickOutsideTest />
+      {/* <UseOnClickOutsideTest /> */}
+      <UseWindowResizeTest />
     </>
   );
 }
