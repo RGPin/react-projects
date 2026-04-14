@@ -20,6 +20,7 @@ import menus from "./components/tree-view/data";
 import UseFetchHookText from "./components/use-fetch/test";
 import UseOnClickOutsideTest from "./components/use-outside-click/test";
 import UseWindowResizeTest from "./components/use-window-resize/test";
+import WeatherApp from "./components/weather-app/WeatherApp";
 // import "./App.css";
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
 
       {/* <ScrollToTopAndBottom /> */}
       {/* <ScrollToSection /> */}
+      <WeatherApp />
     </>
   );
 }

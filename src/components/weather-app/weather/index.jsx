@@ -1,3 +1,10 @@
+import Search from "../search";
+
 export default function Weather() {
-  return <div>Weather</div>;
+  return (
+    <div>
+      <Search />
+      Weather
+    </div>
+  );
 }
