@@ -6,7 +6,7 @@ export default function Search({ search, setSearch, handleSearch }) {
         placeholder="Enter City Name"
         name="search"
         value={search}
-        onChange={(e) => setSearch(e)}
+        onChange={(e) => setSearch(e.target.value)}
       />
       <button onClick={handleSearch}>Search</button>
     </div>
