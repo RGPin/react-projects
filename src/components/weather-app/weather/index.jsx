@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Search from "../search";
 
 export default function Weather() {
@@ -8,19 +8,22 @@ export default function Weather() {
   const [error, setError] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
 
-  async function fetchWeatherData(param) {
+  async function fetchWeatherData(param, signal) {
     try {
       setLoading(true);
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${param}&exclude={part}&appid=${apiKey}`,
+        { signal },
       );
       if (!response.ok) throw new Error("Failed to fetch");
       const data = await response.json();
       setWeatherData(data);
       console.log(data);
     } catch (e) {
-      console.error(e);
-      setError(e);
+      if (e.name !== "AbortError") {
+        console.error(e);
+        setError(e);
+      }
     } finally {
       setLoading(false);
     }
@@ -29,6 +32,13 @@ export default function Weather() {
   function handleSearch() {
     fetchWeatherData(search);
   }
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+    fetchWeatherData("bangalore", signal);
+    return () => controller.abort();
+  }, []);
 
   return (
     <div>
