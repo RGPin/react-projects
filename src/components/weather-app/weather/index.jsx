@@ -18,7 +18,6 @@ export default function Weather() {
       if (!response.ok) throw new Error("Failed to fetch");
       const data = await response.json();
       setWeatherData(data);
-      console.log(data);
     } catch (e) {
       if (e.name !== "AbortError") {
         console.error(e);
@@ -31,6 +30,15 @@ export default function Weather() {
 
   function handleSearch() {
     fetchWeatherData(search);
+  }
+
+  function getCurrentDate() {
+    return new Date().toLocaleDateString("en-us", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
   }
 
   useEffect(() => {
@@ -47,7 +55,38 @@ export default function Weather() {
         setSearch={setSearch}
         handleSearch={handleSearch}
       />
-      Weather
+      {loading ? (
+        <div className="loading">Loading, please wait... </div>
+      ) : error ? (
+        <div>Error encountered: {error}</div>
+      ) : (
+        <div>
+          <div className="city-name">
+            <h2>
+              {weatherData?.name}, <span>{weatherData?.sys?.country}</span>
+            </h2>
+          </div>
+          <div className="date">
+            <span>{getCurrentDate()}</span>
+          </div>
+          <div className="temperature">{weatherData?.main?.temp}</div>
+          <p className="description">{weatherData?.weather[0].description}</p>
+          <div className="weather-info">
+            <div className="column">
+              <div>
+                <p className="wind">{weatherData?.wind?.speed}</p>
+                <p>Wind Speed</p>
+              </div>
+            </div>
+            <div className="column">
+              <div>
+                <p className="humidity">{weatherData?.main?.humidity}%</p>
+                <p>Humidity</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

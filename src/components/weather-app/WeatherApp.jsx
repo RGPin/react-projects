@@ -3,7 +3,7 @@ import "./WeatherApp.css";
 
 export default function WeatherApp() {
   return (
-    <div>
+    <div className="WeatherApp">
       <Weather />
     </div>
   );
