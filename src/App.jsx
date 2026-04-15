@@ -23,6 +23,8 @@ import UseFetchHookText from "./components/use-fetch/test";
 import UseOnClickOutsideTest from "./components/use-outside-click/test";
 import UseWindowResizeTest from "./components/use-window-resize/test";
 import WeatherApp from "./components/weather-app/WeatherApp";
+import { Provider } from "react-redux";
+import store from "./components/shopping-cart/store";
 // import "./App.css";
 
 function App() {
@@ -59,9 +61,11 @@ function App() {
       {/* <ScrollToSection /> */}
       {/* <WeatherApp /> */}
 
-      <BrowserRouter>
-        <ShoppingCartApp />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <ShoppingCartApp />
+        </BrowserRouter>
+      </Provider>
     </>
   );
 }
