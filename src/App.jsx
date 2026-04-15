@@ -13,6 +13,7 @@ import ScrollIndicator from "./components/scroll-indicator";
 import ScrollToTopAndBottom from "./components/scroll-to-top-and-bottom";
 import ScrollToSection from "./components/scroll-to-top-and-bottom/scroll-to-section";
 import SearchAutoComplete from "./components/search-autocomplete";
+import ShoppingCartApp from "./components/shopping-cart/ShoppingCartApp";
 import StarRating from "./components/star-rating";
 import TicTacToe from "./components/tic-tac-toe";
 import TreeView from "./components/tree-view";
@@ -55,7 +56,8 @@ function App() {
 
       {/* <ScrollToTopAndBottom /> */}
       {/* <ScrollToSection /> */}
-      <WeatherApp />
+      {/* <WeatherApp /> */}
+      <ShoppingCartApp />
     </>
   );
 }
