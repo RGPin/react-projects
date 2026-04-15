@@ -1,3 +1,4 @@
+import { BrowserRouter } from "react-router-dom";
 import Accordian from "./components/accordion";
 import ModalTest from "./components/custom-modal/modal-test";
 import TabTest from "./components/custom-tabs/tab-test";
@@ -57,7 +58,10 @@ function App() {
       {/* <ScrollToTopAndBottom /> */}
       {/* <ScrollToSection /> */}
       {/* <WeatherApp /> */}
-      <ShoppingCartApp />
+
+      <BrowserRouter>
+        <ShoppingCartApp />
+      </BrowserRouter>
     </>
   );
 }
