@@ -9,8 +9,8 @@ export default function ProductTile({ product }) {
     dispatch(addToCart(product));
   }
 
-  function handleRemoveFromCart(productId) {
-    dispatch(removeFromCart(productId));
+  function handleRemoveFromCart() {
+    dispatch(removeFromCart(product.id));
   }
 
   return (
@@ -33,7 +33,7 @@ export default function ProductTile({ product }) {
             className="bg-red-950 text-white border-2 rounded-lg font-bold p-4"
             onClick={
               cart.some((item) => item.id === product.id)
-                ? () => handleRemoveFromCart(product.id)
+                ? handleRemoveFromCart
                 : handleAddToCart
             }
           >
