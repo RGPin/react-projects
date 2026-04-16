@@ -7,6 +7,7 @@ export default function GlobalState({ children }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [recipeList, setRecipeList] = useState([]);
+  const [recipeDetailsData, setRecipeDetailsData] = useState(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -38,6 +39,8 @@ export default function GlobalState({ children }) {
         loading,
         error,
         recipeList,
+        recipeDetailsData,
+        setRecipeDetailsData,
       }}
     >
       {children}
