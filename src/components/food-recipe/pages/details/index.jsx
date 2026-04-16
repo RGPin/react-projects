@@ -61,7 +61,7 @@ export default function Details() {
           >
             {favoritesList.some((recipe) => recipe.id === recipeDetailsData.id)
               ? "Remove from favorites"
-              : "Save as favorite"}
+              : "Add to favorites"}
           </button>
         </div>
         <div>
