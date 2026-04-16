@@ -3,7 +3,12 @@ import { useParams } from "react-router-dom";
 import { GlobalContext } from "../../context";
 
 export default function Details() {
-  const { recipeDetailsData, setRecipeDetailsData } = useContext(GlobalContext);
+  const {
+    recipeDetailsData,
+    setRecipeDetailsData,
+    handleAddToFavorites,
+    favoritesList,
+  } = useContext(GlobalContext);
   const { id } = useParams();
 
   async function getRecipeDetails(signal) {
@@ -37,7 +42,7 @@ export default function Details() {
           <img
             src={recipeDetailsData?.image_url}
             className="w-full h-full object-cover block group-hover:scale-105 duration-300"
-            key={id}
+            key={`${id}-image`}
           />
         </div>
       </div>
@@ -49,8 +54,14 @@ export default function Details() {
           {recipeDetailsData?.title}
         </h3>
         <div>
-          <button className="p-3 px-8 rounded-lg text-sm uppercase font-medium tracking-wider mt-3 inline-block shadow-md bg-black text-white">
-            Save as favorite
+          <button
+            onClick={() => handleAddToFavorites(recipeDetailsData)}
+            key={`${id}-button`}
+            className="p-3 px-8 rounded-lg text-sm uppercase font-medium tracking-wider mt-3 inline-block shadow-md bg-black text-white"
+          >
+            {favoritesList.some((recipe) => recipe.id === recipeDetailsData.id)
+              ? "Remove from favorites"
+              : "Save as favorite"}
           </button>
         </div>
         <div>

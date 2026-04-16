@@ -8,6 +8,7 @@ export default function GlobalState({ children }) {
   const [error, setError] = useState(null);
   const [recipeList, setRecipeList] = useState([]);
   const [recipeDetailsData, setRecipeDetailsData] = useState(null);
+  const [favoritesList, setFavoritesList] = useState([]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -30,6 +31,17 @@ export default function GlobalState({ children }) {
     }
   }
 
+  function handleAddToFavorites(recipe) {
+    setFavoritesList((prevState) => {
+      const index = prevState.findIndex((item) => item.id === recipe.id);
+      if (index === -1) {
+        return [...prevState, recipe];
+      } else {
+        return prevState.filter((item) => item.id !== recipe.id);
+      }
+    });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -41,6 +53,8 @@ export default function GlobalState({ children }) {
         recipeList,
         recipeDetailsData,
         setRecipeDetailsData,
+        handleAddToFavorites,
+        favoritesList,
       }}
     >
       {children}
