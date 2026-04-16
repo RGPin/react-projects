@@ -25,6 +25,7 @@ import UseWindowResizeTest from "./components/use-window-resize/test";
 import WeatherApp from "./components/weather-app/WeatherApp";
 import { Provider } from "react-redux";
 import store from "./components/shopping-cart/store";
+import FoodRecipeApp from "./components/food-recipe/FoodRecipeApp";
 // import "./App.css";
 
 function App() {
@@ -61,11 +62,15 @@ function App() {
       {/* <ScrollToSection /> */}
       {/* <WeatherApp /> */}
 
-      <Provider store={store}>
+      <BrowserRouter>
+        <FoodRecipeApp />
+      </BrowserRouter>
+
+      {/* <Provider store={store}>
         <BrowserRouter>
           <ShoppingCartApp />
         </BrowserRouter>
-      </Provider>
+      </Provider> */}
     </>
   );
 }
