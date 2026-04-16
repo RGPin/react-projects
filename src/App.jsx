@@ -26,6 +26,7 @@ import WeatherApp from "./components/weather-app/WeatherApp";
 import { Provider } from "react-redux";
 import store from "./components/shopping-cart/store";
 import FoodRecipeApp from "./components/food-recipe/FoodRecipeApp";
+import GlobalState from "./components/food-recipe/context";
 // import "./App.css";
 
 function App() {
@@ -63,7 +64,9 @@ function App() {
       {/* <WeatherApp /> */}
 
       <BrowserRouter>
-        <FoodRecipeApp />
+        <GlobalState>
+          <FoodRecipeApp />
+        </GlobalState>
       </BrowserRouter>
 
       {/* <Provider store={store}>
