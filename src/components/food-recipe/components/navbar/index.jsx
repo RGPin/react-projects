@@ -1,3 +1,49 @@
+import { NavLink } from "react-router-dom";
+
 export default function NavBar() {
-  return <div>Navbar</div>;
+  return (
+    <nav className="flex justify-between items-center py-8 container mx-auto flex-col lg:flex-row gap-5 lg:gap-0">
+      <h2 className="text-2xl font-semibold">
+        <NavLink
+          to={"/"}
+          style={({ isActive }) => ({ color: isActive ? "orange" : "black" })}
+          className="text-black hover:text-gray-700 duration-300"
+        >
+          FoodRecipe
+        </NavLink>
+      </h2>
+      <form>
+        <input
+          type="text"
+          name="search"
+          placeholder="Enter Items..."
+          className="bg-white/75 p-3 px-8 rounded-full outline-none lg:w-96 shadow-lg shadow-red-100 focus:shadow-red-200"
+        />
+      </form>
+      <ul className="flex gap-5">
+        <li>
+          <NavLink
+            to={"/"}
+            style={({ isActive }) => ({
+              color: isActive ? "orange" : "black",
+            })}
+            className="text-black hover:text-gray-700 duration-300"
+          >
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to={"/favorites"}
+            style={({ isActive }) => ({
+              color: isActive ? "orange" : "black",
+            })}
+            className="text-black hover:text-gray-700 duration-300"
+          >
+            Favorites
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
+  );
 }
