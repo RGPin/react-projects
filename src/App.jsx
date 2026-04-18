@@ -27,6 +27,10 @@ import { Provider } from "react-redux";
 import store from "./components/shopping-cart/store";
 import FoodRecipeApp from "./components/food-recipe/FoodRecipeApp";
 import GlobalState from "./components/food-recipe/context";
+import ExpenseTrackerApp from "./components/expense-tracker/ExpenseTrackerApp";
+import { ThemeProvider } from "next-themes";
+import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
+import ExpenseState from "./components/expense-tracker/context";
 // import "./App.css";
 
 function App() {
@@ -63,17 +67,25 @@ function App() {
       {/* <ScrollToSection /> */}
       {/* <WeatherApp /> */}
 
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <GlobalState>
           <FoodRecipeApp />
         </GlobalState>
-      </BrowserRouter>
+      </BrowserRouter> */}
 
       {/* <Provider store={store}>
         <BrowserRouter>
           <ShoppingCartApp />
         </BrowserRouter>
       </Provider> */}
+
+      <ThemeProvider attribute="class" defaultTheme="system">
+        <ChakraProvider value={defaultSystem}>
+          <ExpenseState>
+            <ExpenseTrackerApp />
+          </ExpenseState>
+        </ChakraProvider>
+      </ThemeProvider>
     </>
   );
 }
