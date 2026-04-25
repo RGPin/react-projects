@@ -6,10 +6,40 @@ import {
   RadioCard,
   RadioGroup,
 } from "@chakra-ui/react";
+import { useContext } from "react";
+import { GlobalContext } from "../../context";
 
 export default function TransactionForm() {
+  const { formData, setFormData, value, setValue, handleFormSubmit } =
+    useContext(GlobalContext);
+
+  function handleFormChange(e) {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (!formData.description || !formData.amount) return;
+    handleFormSubmit(formData);
+    setFormData({
+      type: "income",
+      amount: 0,
+      description: "",
+    });
+  }
+
+  function resetDialog() {
+    setFormData({
+      type: "income",
+      amount: 0,
+      description: "",
+    });
+  }
   return (
-    <Dialog.Root>
+    <Dialog.Root onExitComplete={resetDialog}>
       <Dialog.Trigger>
         <Button bg="blue.300" ml="4" type="button">
           Add New Transaction
@@ -30,16 +60,26 @@ export default function TransactionForm() {
             </Button>
           </Dialog.CloseTrigger>
 
-          <form>
+          <form onSubmit={handleSubmit}>
             <Dialog.Body>
               <Field.Root>
                 <Field.Label>Description</Field.Label>
-                <Input name="description" type="text" />
+                <Input
+                  name="description"
+                  type="text"
+                  onChange={handleFormChange}
+                  value={formData.description}
+                />
               </Field.Root>
 
               <Field.Root>
                 <Field.Label>Amount</Field.Label>
-                <Input name="amount" type="number" />
+                <Input
+                  name="amount"
+                  type="number"
+                  onChange={handleFormChange}
+                  value={formData.amount}
+                />
               </Field.Root>
 
               <RadioGroup.Root
@@ -47,6 +87,8 @@ export default function TransactionForm() {
                 name="type"
                 display={"flex"}
                 justifyContent={"space-evenly"}
+                onValueChange={handleFormChange}
+                value={formData.type}
               >
                 <RadioGroup.Item value="income">
                   <RadioGroup.ItemHiddenInput />
