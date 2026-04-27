@@ -31,6 +31,8 @@ import ExpenseTrackerApp from "./components/expense-tracker/ExpenseTrackerApp";
 import { ThemeProvider } from "next-themes";
 import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
 import ExpenseState from "./components/expense-tracker/context";
+import BlogApp from "./components/blog-app/client/BlogApp";
+import BlogState from "./components/blog-app/client/context";
 // import "./App.css";
 
 function App() {
@@ -79,13 +81,19 @@ function App() {
         </BrowserRouter>
       </Provider> */}
 
-      <ThemeProvider attribute="class" defaultTheme="system">
+      {/* <ThemeProvider attribute="class" defaultTheme="system">
         <ChakraProvider value={defaultSystem}>
           <ExpenseState>
             <ExpenseTrackerApp />
           </ExpenseState>
         </ChakraProvider>
-      </ThemeProvider>
+      </ThemeProvider> */}
+
+      <BrowserRouter>
+        <BlogState>
+          <BlogApp />
+        </BlogState>
+      </BrowserRouter>
     </>
   );
 }

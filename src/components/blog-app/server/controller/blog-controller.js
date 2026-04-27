@@ -17,30 +17,19 @@ const fetchListOfBlogs = async (req, res) => {
 
 const addNewBlog = async (req, res) => {
   const { title, description } = req.body;
-  const currentDate = new Date();
-
-  const newlyCreatedBlog = new Blog({
-    title,
-    description,
-    date: currentDate,
-  });
 
   try {
-    await newlyCreatedBlog.save();
-  } catch (error) {
-    console.log(e);
-  }
+    const newlyCreatedBlog = await Blog.create({
+      title,
+      description,
+      date: new Date(),
+    });
 
-  try {
-    const session = await mongoose.startSession();
-    session.startTransaction();
-    await newlyCreatedBlog.save(session);
-    session.commitTransaction();
+    return res.status(201).json({ newlyCreatedBlog });
   } catch (error) {
-    return res.send(500).json({ message: error });
+    console.log(error);
+    return res.status(500).json({ message: error.message });
   }
-
-  return res.status(200).json({ newlyCreatedBlog });
 };
 
 const deleteABlog = async (req, res) => {
