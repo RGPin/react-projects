@@ -7,8 +7,19 @@ export default function BlogState({ children }) {
     title: "",
     description: "",
   });
+  const [blogList, setBlogList] = useState([]);
+  const [pending, setPending] = useState(false);
   return (
-    <BlogContext.Provider value={{ formData, setFormData }}>
+    <BlogContext.Provider
+      value={{
+        formData,
+        setFormData,
+        blogList,
+        setBlogList,
+        pending,
+        setPending,
+      }}
+    >
       {children}
     </BlogContext.Provider>
   );
