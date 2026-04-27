@@ -9,6 +9,7 @@ export default function BlogState({ children }) {
   });
   const [blogList, setBlogList] = useState([]);
   const [pending, setPending] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   return (
     <BlogContext.Provider
       value={{
@@ -18,6 +19,8 @@ export default function BlogState({ children }) {
         setBlogList,
         pending,
         setPending,
+        isEdit,
+        setIsEdit,
       }}
     >
       {children}

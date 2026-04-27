@@ -2,10 +2,13 @@ import { useContext, useEffect } from "react";
 import { BlogContext } from "../../context";
 import classes from "./styles.module.css";
 import { FaTrash, FaEdit } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const { pending, setPending, blogList, setBlogList } =
     useContext(BlogContext);
+
+  const navigate = useNavigate();
 
   async function fetchListOfBlogs() {
     try {
@@ -46,6 +49,10 @@ export default function Home() {
     }
   }
 
+  function handleEdit(blog) {
+    navigate("/add-blog", { state: { blog } });
+  }
+
   useEffect(() => {
     fetchListOfBlogs();
   }, []);
@@ -61,7 +68,7 @@ export default function Home() {
               <div key={blog._id}>
                 <p>{blog.title}</p>
                 <p>{blog.description}</p>
-                <FaEdit size={30} />
+                <FaEdit onClick={() => handleEdit(blog)} size={30} />
                 <FaTrash onClick={() => handleDeleteBlog(blog._id)} size={30} />
               </div>
             ))
